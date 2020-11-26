@@ -40,18 +40,11 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-
-
 const Signup = () => {
-  const sig = (delay) => {
-    new Promise(function(resolver){
-      setTimeout(delay, resolver)
-    })
-  }
+
     const { errors ,register, handleSubmit, formState , reset} = useForm()
-    const onSubmit = async (data) => {
+    const onSubmit = (data) => {
       console.log(data)
-      await sig(100000)
       alert('success')
       reset()
     };
@@ -108,7 +101,6 @@ return(
               label="National ID"
               placeholder="17200000001123344"
             />
-           
           </Grid>
           <Grid item xs={12}>
           {errors.email?.type === "required" && (
@@ -140,13 +132,13 @@ return(
               autoComplete="password"
                 
             />
-          </Grid>
-          <Grid item xs={12}>
-            <FormControlLabel
-              control={<Checkbox name="Check" inputRef={register({required:true})} value={false} color="primary" />}
-              label="the data entered is correct, and I'm ready to sign up!"
+      </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={<Checkbox name="Check" inputRef={register({required:true})} value={false} color="primary" />}
+            label="the data entered is correct, and I'm ready to sign up!"
             />
-          </Grid>
+        </Grid>
         </Grid>
         <Button
           type="submit"
