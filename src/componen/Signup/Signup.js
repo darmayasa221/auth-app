@@ -135,7 +135,7 @@ return(
       </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox name="Check" inputRef={register({required:true})} value={false} color="primary" />}
+            control={<Checkbox name="Check" inputRef={register({required:true})} defaultValue={false} color="primary" />}
             label="the data entered is correct, and I'm ready to sign up!"
             />
         </Grid>
