@@ -40,17 +40,18 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const sig = (delay) => {
-  new Promise(function(resolver){
-    setTimeout(delay, resolver)
-  })
-}
+
 
 const Signup = () => {
+  const sig = (delay) => {
+    new Promise(function(resolver){
+      setTimeout(delay, resolver)
+    })
+  }
     const { errors ,register, handleSubmit, formState , reset} = useForm()
     const onSubmit = async (data) => {
       console.log(data)
-      await sig(3000)
+      await sig(100000)
       alert('success')
       reset()
     };
@@ -74,7 +75,6 @@ return(
               name="name"
               variant="outlined"
               fullWidth
-              id="name"
               label="Name"
               autoFocus
             />
@@ -121,7 +121,6 @@ return(
               inputRef={register({required: true, pattern : /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/  })}
               variant="outlined"
               fullWidth
-              id="email"
               label="email"
               name="email"
               placeholder="email@any.any"
@@ -138,7 +137,6 @@ return(
               name="password"
               label="Password"
               type="password"
-              id="password"
               autoComplete="password"
                 
             />
