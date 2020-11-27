@@ -38,10 +38,9 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const {control,register,handleSubmit,errors} =  useForm()
   const classes = useStyles();
-  const vald = Object.keys(errors).length > 0 && alert('National ID & Password is Empty')
+
   const logIn = (data) =>{
     console.log(data)
-    return vald
   };
 
   return (
@@ -90,6 +89,7 @@ const Login = () => {
             control={<Controller name="remember" as={Checkbox} control={control} defaultValue={true} color="primary" />}
             label="Remember me"
           />
+          {Object.keys(errors).length > 0 && alert('National ID & Password is Empty')}
           <Button
             type="submit"
             fullWidth
