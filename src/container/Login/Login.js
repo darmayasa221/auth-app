@@ -34,13 +34,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const Login = () => {
   const {control,register,handleSubmit,errors} =  useForm()
   const classes = useStyles();
+  const vald = Object.keys(errors).length > 0 && alert('National ID & Password is Empty')
   const logIn = (data) =>{
-      console.log(data)
-      alert("success")
-  }
+    console.log(data)
+    return vald
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -70,7 +72,6 @@ const Login = () => {
               name="nationalId"
               label="National ID"
               placeholder="17200000001123344"
-              autoFocus
             />
             {errors.password?.type === "required" &&(
                <p>Password is Required</p>
@@ -86,7 +87,7 @@ const Login = () => {
               autoComplete="password"
               />
           <FormControlLabel 
-            control={<Controller name="remember" as={Checkbox} control={control} defaultValue={false} color="primary" />}
+            control={<Controller name="remember" as={Checkbox} control={control} defaultValue={true} color="primary" />}
             label="Remember me"
           />
           <Button
@@ -115,6 +116,7 @@ const Login = () => {
       </div>
     </Container>
   );
+  
 }
 
 export default Login;
