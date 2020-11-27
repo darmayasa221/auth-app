@@ -40,7 +40,7 @@ const Login = () => {
   const classes = useStyles();
   const vald = Object.keys(errors).length > 0 && alert('National ID & Password is Empty')
   const logIn = (data) =>{
-    console.log(data)
+    console.log('hii data',data)
     return vald
   };
 
