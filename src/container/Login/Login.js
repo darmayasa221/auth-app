@@ -40,8 +40,8 @@ const Login = () => {
   const classes = useStyles();
   const logIn = (data) =>{
     console.log(data)
-  
-  };
+
+    };
 
   return (
     <Container component="main" maxWidth="xs">
