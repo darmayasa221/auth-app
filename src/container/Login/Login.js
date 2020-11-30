@@ -39,6 +39,9 @@ const Login = () => {
   const {control,register,handleSubmit,errors} =  useForm()
   const classes = useStyles();
   const logIn = (data) =>{
+    console.log('hii data',data)
+    return vald
+  };
     console.log(data)
 
     };
