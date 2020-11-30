@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import './Login.css';
 
 
 
@@ -34,15 +35,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const Login = () => {
-  const {control,register,handleSubmit,errors} =  useForm()
   const classes = useStyles();
+  const {control,register,handleSubmit,errors} =  useForm()
   const logIn = (data) =>{
-    console.log(data)
-
-    };
-
+    if(data.nationalId + data.password === ''){  
+    alert('National ID & Password Empty!')
+    }else if(data.password === ''){
+    alert('Password Empty')
+    }else if(data.nationalId === ''){
+    alert('National ID Empty')
+    }else{
+    alert('success') 
+    }
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -53,7 +59,7 @@ const Login = () => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleSubmit(logIn)}>
              {errors.nationalId?.type === "required" &&(
                   <p>National ID is Required</p>
               )}
@@ -65,18 +71,15 @@ const Login = () => {
               )}
             <TextField
               type="number"
-              inputRef={register({required:true , maxLength:16,minLength:16})}
+              inputRef={register({maxLength:16,minLength:16})}
               variant="outlined"
               fullWidth
               name="nationalId"
               label="National ID"
               placeholder="17200000001123344"
             />
-            {errors.password?.type === "required" &&(
-               <p>Password is Required</p>
-             )}
             <TextField
-              inputRef={register({required: true})}
+              inputRef={register}
               margin="normal"
               variant="outlined"
               fullWidth
@@ -85,19 +88,17 @@ const Login = () => {
               type="password"
               autoComplete="password"
               />
-          <FormControlLabel 
-            control={<Controller name="remember" as={Checkbox} control={control} defaultValue={true} color="primary" />}
-            label="Remember me"
-          />
-         {Object.keys(errors).length > 0 && alert('National ID & Password is Empty')}
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={handleSubmit(logIn)}
-          >
+              <FormControlLabel 
+                control={<Controller name="remember" as={Checkbox} control={control} defaultValue={true} color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
             Sign In
           </Button>
           <Grid container>
