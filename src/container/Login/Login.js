@@ -40,8 +40,8 @@ const Login = () => {
   const classes = useStyles();
   const logIn = (data) =>{
     console.log(data)
-   
-  };
+
+    };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -89,6 +89,7 @@ const Login = () => {
             control={<Controller name="remember" as={Checkbox} control={control} defaultValue={true} color="primary" />}
             label="Remember me"
           />
+         {Object.keys(errors).length > 0 && alert('National ID & Password is Empty')}
           <Button
             type="submit"
             fullWidth
