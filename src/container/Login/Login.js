@@ -35,9 +35,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = () => {
+function Login(){
   const classes = useStyles();
   const {control,register,handleSubmit,errors} =  useForm()
+
   const logIn = (data) =>{
     if(data.nationalId + data.password === ''){  
     alert('National ID & Password Empty!')
@@ -74,6 +75,7 @@ const Login = () => {
               inputRef={register({maxLength:16,minLength:16})}
               variant="outlined"
               fullWidth
+              id="nationalId"
               name="nationalId"
               label="National ID"
               placeholder="17200000001123344"
@@ -83,6 +85,7 @@ const Login = () => {
               margin="normal"
               variant="outlined"
               fullWidth
+              id="password"
               name="password"
               label="Password"
               type="password"
