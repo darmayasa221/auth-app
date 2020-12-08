@@ -17,6 +17,11 @@ import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+
+
+
 
 const drawerWidth = 240;
 
@@ -132,6 +137,9 @@ export default function Home (){
               <NotificationsIcon />
             </Badge>
           </IconButton>
+          <IconButton color="inherit">
+         <AccountCircleIcon/>
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -158,7 +166,8 @@ export default function Home (){
 
             <Grid item xs={12} md={6} lg={6}>
               <Paper className={fixedHeightPaper}>
-              <List>a</List>
+              <List>
+              </List>
               <List>a1</List>
               </Paper>
             </Grid>
