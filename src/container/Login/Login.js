@@ -1,5 +1,5 @@
 import { Controller, useForm } from 'react-hook-form'
-import React from 'react';
+import React  from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,9 +11,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Swal from "sweetalert2";
+
 import './Login.css';
-
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,21 +35,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 function Login(){
   const classes = useStyles();
   const {control,register,handleSubmit,errors} =  useForm()
-
-  const logIn = (data) =>{
-    if(data.nationalId + data.password === ''){  
-    alert('National ID & Password Empty!')
-    }else if(data.password === ''){
-    alert('Password Empty')
-    }else if(data.nationalId === ''){
-    alert('National ID Empty')
-    }else{
-    alert('success') 
+  const Toast =  Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-  };
+  })
+  const logIn = data =>{    
+    if(data.nationalId + data.password === ''){  
+      Toast.fire({
+          icon:'error',
+          title:'National Id and Passowrd is Empty'
+        })
+    }else if(data.password === ''){
+      Toast.fire({
+        icon: 'error',
+        title: 'Password is Empty!'
+      })
+    }else if(data.nationalId === ''){
+      Toast.fire({
+        icon: 'error',
+        title: 'National Id is Empty!'
+      })
+    }else{
+      Swal.fire({
+        icon:'success',
+        title:'Login Success'
+      })
+    }
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -61,46 +84,47 @@ function Login(){
           Sign in
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit(logIn)}>
-             {errors.nationalId?.type === "required" &&(
-                  <p>National ID is Required</p>
-              )}
-               {errors.nationalId?.type === "maxLength" &&(
-                  <p>MaxLength (16)</p>
-              )}
-                 {errors.nationalId?.type === "minLength" &&(
-                  <p>MinLength (16)</p>
-              )}
-            <TextField
-              type="number"
-              inputRef={register({maxLength:16,minLength:16})}
-              variant="outlined"
-              fullWidth
-              id="nationalId"
-              name="nationalId"
-              label="National ID"
-              placeholder="17200000001123344"
-            />
-            <TextField
-              inputRef={register}
-              margin="normal"
-              variant="outlined"
-              fullWidth
-              id="password"
-              name="password"
-              label="Password"
-              type="password"
-              autoComplete="password"
-              />
-              <FormControlLabel 
-                control={<Controller name="remember" as={Checkbox} control={control} defaultValue={true} color="primary" />}
-                label="Remember me"
-              />
+                  {errors.nationalId?.type === "maxLength" &&(
+                     <p>MaxLength (16)</p>
+                     )}
+                     {errors.nationalId?.type === "minLength" &&(
+                      <p>MinLength (16)</p>
+                      )}
+                  <TextField
+                    title="nationalId"
+                    type="number"
+                    inputRef={register({maxLength:16,minLength:16})}
+                    variant="outlined"
+                    fullWidth
+                    id="nationalId"
+                    name="nationalId"
+                    label="NationalID"
+                    placeholder="17200000001123344"
+                    />
+                    <TextField
+                    title="password"
+                      inputRef={register}
+                      margin="normal"
+                      variant="outlined"
+                      fullWidth
+                      id="password"
+                      name="password"
+                      label="Password"
+                      type="password"
+                      autoComplete="password"
+                      />
+                      <FormControlLabel 
+                        control={<Controller name="remember" as={Checkbox} control={control} defaultValue={true} color="primary" />}
+                        label="Remember me"
+                      />
               <Button
+                title="sub"
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
                 className={classes.submit}
+                data-tesid="button"
               >
             Sign In
           </Button>
